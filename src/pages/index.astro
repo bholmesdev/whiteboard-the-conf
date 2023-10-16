@@ -9,6 +9,27 @@ import Layout from "../layouts/Layout.astro";
       <p>Grab your custom ticket 👀</p>
     </header>
     <canvas width="1080" height="1440"></canvas>
+    <fieldset>
+      <legend class="sr-only">Color</legend>
+
+      <input
+        type="radio"
+        id="color-purple"
+        name="color"
+        value="purple"
+        checked
+      />
+      <label class="sr-only" for="color-purple">Purple</label>
+
+      <input type="radio" id="color-orange" name="color" value="orange" />
+      <label class="sr-only" for="color-orange">Orange</label>
+
+      <input type="radio" id="color-pink" name="color" value="pink" />
+      <label class="sr-only" for="color-pink">Pink</label>
+
+      <input type="radio" id="color-green" name="color" value="green" />
+      <label class="sr-only" for="color-green">Green</label>
+    </fieldset>
   </main>
 </Layout>
 
@@ -28,11 +49,87 @@ import Layout from "../layouts/Layout.astro";
     border-radius: var(--size-4);
     box-shadow: var(--shadow-5);
   }
+
+  fieldset {
+    display: flex;
+    gap: var(--size-1);
+    border: none;
+  }
+
+  input[name="color"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: var(--size-5);
+    height: var(--size-5);
+    border-radius: 50%;
+    background-color: var(--surface-3);
+    border: 1px solid var(--surface-1);
+    transition: scale 0.1s ease-in-out;
+  }
+
+  input#color-orange {
+    background-color: var(--orange);
+  }
+
+  input#color-purple {
+    background-color: var(--purple);
+  }
+
+  input#color-pink {
+    background-color: var(--pink);
+  }
+
+  input#color-green {
+    background-color: var(--green);
+  }
+
+  input[name="color"]:checked {
+    border: 1px solid var(--surface-2);
+    scale: 1.1;
+  }
+
+  :root {
+    --orange-hs: 7, 91%;
+    --purple-hs: 263, 100%;
+    --pink-hs: 331, 96%;
+    --green-hs: 116, 86%;
+    --orange: hsl(var(--orange-hs), 50%);
+    --purple: hsl(var(--purple-hs), 50%);
+    --pink: hsl(var(--pink-hs), 45%);
+    --green: hsl(var(--green-hs), 34%);
+  }
 </style>
 
 <script>
-  const colour = "#3d34a5";
+  const colorMap = {
+    orange: getComputedStyle(document.documentElement).getPropertyValue(
+      "--orange"
+    ),
+    purple: getComputedStyle(document.documentElement).getPropertyValue(
+      "--purple"
+    ),
+    pink: getComputedStyle(document.documentElement).getPropertyValue("--pink"),
+    green: getComputedStyle(document.documentElement).getPropertyValue(
+      "--green"
+    ),
+  };
+
   const strokeWidth = 25;
+
+  // set colour based on radio input
+  const colorInputs = document.querySelectorAll('input[name="color"]')!;
+  for (const colorInput of colorInputs) {
+    colorInput.addEventListener("change", (evt) => {
+      const inputColor = (evt.currentTarget as HTMLInputElement)?.value;
+      if (!(inputColor in colorMap)) return;
+
+      const color =
+        (colorMap as Record<string, string>)[inputColor] ?? colorMap.purple;
+
+      ctx.strokeStyle = color;
+    });
+  }
 
   type Point = { x: number; y: number };
 
@@ -40,9 +137,9 @@ import Layout from "../layouts/Layout.astro";
   let latestPoint: Point = { x: 0, y: 0 };
 
   const canvas = document.querySelector("canvas")!;
-  const ctx = canvas?.getContext("2d")!;
+  const ctx = canvas.getContext("2d")!;
 
-  ctx.strokeStyle = colour;
+  ctx.strokeStyle = colorMap.purple;
   ctx.lineWidth = strokeWidth;
   ctx.lineCap = "round";
   ctx.lineJoin = "round";
