@@ -10,6 +10,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^3.3.0"
+    "astro": "^3.3.0",
+    "open-props": "^1.6.5"
   }
 }
