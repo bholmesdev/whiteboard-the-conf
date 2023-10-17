@@ -3,12 +3,14 @@ import cloudflare from "@astrojs/cloudflare";
 
 import svelte from "@astrojs/svelte";
 
+console.log("built!");
+
 // https://astro.build/config
 export default defineConfig({
   output: "server",
   adapter: cloudflare({
     // use miniflare in dev
-    runtime: "local"
+    runtime: "local",
   }),
-  integrations: [svelte()]
+  integrations: [svelte()],
 });
