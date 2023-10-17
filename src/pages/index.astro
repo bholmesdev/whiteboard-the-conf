@@ -11,17 +11,22 @@ if (session) {
 
 <Layout title="Whiteboard the conf">
   <div class="container">
-    <header>
-      <h1>Whiteboard the conf</h1>
-    </header>
     <main>
+      <h1>Whiteboard the conf</h1>
       <p>
-        Join us for the <strong>greatest</strong> gathering of whiteboard
-        enthusiasts the world over! Whether your a developer, teacher, or just
+        Join us for the <strong>greatest</strong> gathering of web devs and
+        whiteboardists on earth! Whether your a developer, teacher, or just
         dry-erase artist, you'll definitely find a home here 🙌
       </p>
 
-      <RSVP />
+      <p>
+        🗓 Come to the <strong>White(board) House</strong> on{" "}
+        <strong>October 31st, 2023</strong>.
+      </p>
+
+      <div class="rsvp-container">
+        <RSVP />
+      </div>
     </main>
   </div>
 </Layout>
@@ -29,19 +34,31 @@ if (session) {
 <style>
   .container {
     padding-inline: var(--size-2);
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+  }
+
+  main {
     max-width: 80ch;
-    margin: auto;
+  }
+
+  h1 {
+    margin-block-end: var(--size-4);
+  }
+
+  p {
+    margin-block-end: var(--size-2);
+  }
+
+  .rsvp-container {
+    display: flex;
+    justify-content: center;
+    padding-block-start: var(--size-4);
   }
 
   header {
     padding-block-end: var(--size-4);
-  }
-
-  main {
-    display: flex;
-    flex-direction: column;
-    gap: var(--size-4);
-    align-items: center;
   }
 
   :root {
