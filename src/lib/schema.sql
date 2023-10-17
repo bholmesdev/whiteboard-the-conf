@@ -6,6 +6,7 @@ DROP TABLE IF EXISTS user;
 CREATE TABLE user (
     id TEXT PRIMARY KEY,
     username TEXT NOT NULL,
+    picture TEXT,
     badge_img_url TEXT
 );
 CREATE TABLE user_key (

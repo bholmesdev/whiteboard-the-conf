@@ -49,9 +49,11 @@ export const get: APIRoute = async (context) => {
     const getUser = async () => {
       const existingUser = await getExistingUser();
       if (existingUser) return existingUser;
+
       const user = await createUser({
         attributes: {
           username: clerkUser.username,
+          picture: clerkUser.picture,
         },
       });
       return user;
