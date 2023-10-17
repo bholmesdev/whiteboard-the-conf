@@ -7,8 +7,6 @@ type Props = {
 
 const { username } = Astro.props;
 
-console.log({ username });
-
 const rawUser = await Astro.locals.runtime.env.DB.prepare(
   `SELECT username, badge_img_url, picture FROM user WHERE username = ?`
 )
@@ -31,9 +29,9 @@ const user = z
       <h2>Whiteboard the Conf</h2>
       <h3>@{user.username}</h3>
     </hgroup>
-    <img class="profile" src={user.picture} />
+    {user.picture ? <img class="profile" src={user.picture} /> : null}
   </div>
-  <img class="badge" src={user.badge_img_url} />
+  {user.badge_img_url ? <img class="badge" src={user.badge_img_url} /> : null}
 </div>
 
 <style>
