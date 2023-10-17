@@ -3,6 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
+    "d1:setup": "wrangler d1 execute DB --local --file=./src/lib/schema.sql",
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
@@ -13,12 +14,18 @@
     "@astrojs/cloudflare": "^7.5.4",
     "@lucia-auth/adapter-sqlite": "latest",
     "@lucia-auth/oauth": "latest",
-    "lucia": "latest",
     "astro": "^3.3.0",
+    "lucia": "latest",
     "open-props": "^1.6.5"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20231016.0",
-    "@types/node": "^20.8.6"
+    "@types/node": "^20.8.6",
+    "wrangler": "^3.13.1"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "@astrojs/cloudflare@7.5.4": "patches/@astrojs__cloudflare@7.5.4.patch"
+    }
   }
 }

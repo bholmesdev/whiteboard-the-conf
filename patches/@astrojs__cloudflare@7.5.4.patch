@@ -1,0 +1,13 @@
+diff --git a/dist/index.js b/dist/index.js
+index cb1d9a1b71fc6646fc6d0b815fd52eff7cf83550..4d2de48870d18bbd18090cb1eb889fb067bb3a8d 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -78,7 +78,7 @@ export default function createIntegration(args) {
+                                 cachePersist: true,
+                                 cacheWarnUsage: true,
+                                 d1Databases: D1Bindings,
+-                                d1Persist: true,
++                                d1Persist: '.wrangler/state/v3/d1',
+                                 r2Buckets: R2Bindings,
+                                 r2Persist: true,
+                                 kvNamespaces: KVBindings,
