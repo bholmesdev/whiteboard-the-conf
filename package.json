@@ -6,12 +6,19 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
+    "preview": "wrangler pages dev ./dist",
     "astro": "astro"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^7.5.4",
+    "@lucia-auth/adapter-sqlite": "latest",
+    "@lucia-auth/oauth": "latest",
+    "lucia": "latest",
     "astro": "^3.3.0",
     "open-props": "^1.6.5"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20231016.0",
+    "@types/node": "^20.8.6"
   }
 }

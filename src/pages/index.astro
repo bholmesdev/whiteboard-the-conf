@@ -1,5 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+const session = await Astro.locals.auth.validate();
+if (!session) return Astro.redirect("/login", 302);
 ---
 
 <Layout title="Whiteboard the conf">
@@ -7,6 +10,8 @@ import Layout from "../layouts/Layout.astro";
     <header>
       <h1>Whiteboard the conf</h1>
       <p>Grab your custom ticket 👀</p>
+      <p>User id: {session.user.userId}</p>
+      <p>Username: {session.user.username}</p>
     </header>
     <main>
       <canvas width="1080" height="1440"></canvas>

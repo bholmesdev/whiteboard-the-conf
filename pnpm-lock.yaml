@@ -7,13 +7,30 @@ settings:
 dependencies:
   '@astrojs/cloudflare':
     specifier: ^7.5.4
-    version: 7.5.4(astro@3.3.0)
+    version: 7.5.4(@types/node@20.8.6)(astro@3.3.0)
+  '@lucia-auth/adapter-sqlite':
+    specifier: latest
+    version: 2.0.0(lucia@2.7.1)
+  '@lucia-auth/oauth':
+    specifier: latest
+    version: 3.3.1(lucia@2.7.1)
   astro:
     specifier: ^3.3.0
-    version: 3.3.0
+    version: 3.3.0(@types/node@20.8.6)
+  lucia:
+    specifier: latest
+    version: 2.7.1
   open-props:
     specifier: ^1.6.5
     version: 1.6.5
+
+devDependencies:
+  '@cloudflare/workers-types':
+    specifier: ^4.20231016.0
+    version: 4.20231016.0
+  '@types/node':
+    specifier: ^20.8.6
+    version: 20.8.6
 
 packages:
 
@@ -25,7 +42,7 @@ packages:
       '@jridgewell/trace-mapping': 0.3.19
     dev: false
 
-  /@astrojs/cloudflare@7.5.4(astro@3.3.0):
+  /@astrojs/cloudflare@7.5.4(@types/node@20.8.6)(astro@3.3.0):
     resolution: {integrity: sha512-AOe686LoUFvj4xbqxQLHPmXNuf7c2gnwFFQSDWVabxZqoANJW7EjUK+Hb6OVD+RAbhIybUGB1LmImKgYrblEUg==}
     peerDependencies:
       astro: ^3.3.0
@@ -33,13 +50,13 @@ packages:
       '@astrojs/underscore-redirects': 0.3.1
       '@cloudflare/workers-types': 4.20231016.0
       '@iarna/toml': 2.2.5
-      astro: 3.3.0
+      astro: 3.3.0(@types/node@20.8.6)
       dotenv: 16.3.1
       esbuild: 0.19.4
       find-up: 6.3.0
       miniflare: 3.20231010.0
       tiny-glob: 0.2.9
-      vite: 4.4.11
+      vite: 4.4.11(@types/node@20.8.6)
     transitivePeerDependencies:
       - '@types/node'
       - bufferutil
@@ -67,7 +84,7 @@ packages:
       astro: ^3.3.0
     dependencies:
       '@astrojs/prism': 3.0.0
-      astro: 3.3.0
+      astro: 3.3.0(@types/node@20.8.6)
       github-slugger: 2.0.0
       import-meta-resolve: 3.0.0
       mdast-util-definitions: 6.0.0
@@ -385,7 +402,6 @@ packages:
 
   /@cloudflare/workers-types@4.20231016.0:
     resolution: {integrity: sha512-eGB0cRVyoJpeyGJx2re5sbd9R316a61sY73xwnqm4cwGpb+OxCK2gc651RxGiN7H4w6LY1RpysUgeGLmj5B3+g==}
-    dev: false
 
   /@esbuild/android-arm64@0.18.20:
     resolution: {integrity: sha512-Nz4rJcchGDtENV0eMKUNa6L12zz2zBDXuhj/Vjh18zGqB44Bi7MBMSXjgunJgjRhCmKOjnPuZp4Mb6OKqtMHLQ==}
@@ -822,6 +838,29 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: false
 
+  /@lucia-auth/adapter-sqlite@2.0.0(lucia@2.7.1):
+    resolution: {integrity: sha512-Hiy8WND/1mi25r0M2ruSml+Ab5GJLr4XZEHApYw1lxybF+VlPUyX7oTtIVCSgvq/SWiP/tvnyPwnXAPmNr8/bg==}
+    peerDependencies:
+      '@libsql/client': ^0.3.0
+      better-sqlite3: ^8.0.0
+      lucia: ^2.0.0
+    peerDependenciesMeta:
+      '@libsql/client':
+        optional: true
+      better-sqlite3:
+        optional: true
+    dependencies:
+      lucia: 2.7.1
+    dev: false
+
+  /@lucia-auth/oauth@3.3.1(lucia@2.7.1):
+    resolution: {integrity: sha512-2fGXPRXXQ58YGpN3zzbLSTWBXU4I3URcSXF7enR4cLugUcwdtYaGRL9b92tfZPHudr5BJRrrVqcs/VTjHTrdiw==}
+    peerDependencies:
+      lucia: ^2.0.0
+    dependencies:
+      lucia: 2.7.1
+    dev: false
+
   /@nodelib/fs.scandir@2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
@@ -916,6 +955,11 @@ packages:
       '@types/unist': 2.0.8
     dev: false
 
+  /@types/node@20.8.6:
+    resolution: {integrity: sha512-eWO4K2Ji70QzKUqRy6oyJWUeB7+g2cRagT3T/nxYibYcT4y2BDL8lqolRXjTHmkZCdJfIPaY73KbJAZmcryxTQ==}
+    dependencies:
+      undici-types: 5.25.3
+
   /@types/parse5@6.0.3:
     resolution: {integrity: sha512-SuT16Q1K51EAVPz1K29DJ/sXjhSQ0zjvsypYJ6tlwVsRV9jwW5Adq2ch8Dq8kDBCkYnELS7N7VNCSB5nC56t/g==}
     dev: false
@@ -999,7 +1043,7 @@ packages:
       printable-characters: 1.0.42
     dev: false
 
-  /astro@3.3.0:
+  /astro@3.3.0(@types/node@20.8.6):
     resolution: {integrity: sha512-O3MsXULamxQMy6sBgv07iVe5teJ41o+9tVScB/Yo2Io0XwvLXVhjVrjAxKpulBcKpU3/LyOpVfj/x63fcONbPA==}
     engines: {node: '>=18.14.1', npm: '>=6.14.0'}
     hasBin: true
@@ -1054,7 +1098,7 @@ packages:
       tsconfck: 3.0.0-next.9
       unist-util-visit: 4.1.2
       vfile: 5.3.7
-      vite: 4.4.11
+      vite: 4.4.11(@types/node@20.8.6)
       vitefu: 0.2.5(vite@4.4.11)
       which-pm: 2.1.1
       yargs-parser: 21.1.1
@@ -2144,6 +2188,10 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       yallist: 4.0.0
+    dev: false
+
+  /lucia@2.7.1:
+    resolution: {integrity: sha512-EHDTajS1YWA7Q37jd29Far1l4nfZgsWLp4hDQeaQhVpJd2WKQqA3626kJYmOj1CTweVMkE54xFi5JIph+agZkQ==}
     dev: false
 
   /magic-string@0.30.5:
@@ -3520,6 +3568,9 @@ packages:
     engines: {node: '>=12.20'}
     dev: false
 
+  /undici-types@5.25.3:
+    resolution: {integrity: sha512-Ga1jfYwRn7+cP9v8auvEXN1rX3sWqlayd4HP7OKk4mZWylEmu3KzXDUGrQUN6Ol7qo1gPvB2e5gX6udnyEPgdA==}
+
   /undici@5.26.3:
     resolution: {integrity: sha512-H7n2zmKEWgOllKkIUkLvFmsJQj062lSm3uA4EYApG8gLuiOM0/go9bIoC3HVaSnfg4xunowDE2i9p8drkXuvDw==}
     engines: {node: '>=14.0'}
@@ -3697,7 +3748,7 @@ packages:
       vfile-message: 4.0.2
     dev: false
 
-  /vite@4.4.11:
+  /vite@4.4.11(@types/node@20.8.6):
     resolution: {integrity: sha512-ksNZJlkcU9b0lBwAGZGGaZHCMqHsc8OpgtoYhsQ4/I2v5cnpmmmqe5pM4nv/4Hn6G/2GhTdj0DhZh2e+Er1q5A==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -3725,6 +3776,7 @@ packages:
       terser:
         optional: true
     dependencies:
+      '@types/node': 20.8.6
       esbuild: 0.18.20
       postcss: 8.4.31
       rollup: 3.29.4
@@ -3740,7 +3792,7 @@ packages:
       vite:
         optional: true
     dependencies:
-      vite: 4.4.11
+      vite: 4.4.11(@types/node@20.8.6)
     dev: false
 
   /web-namespaces@2.0.1:
