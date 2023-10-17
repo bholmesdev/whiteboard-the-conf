@@ -22,8 +22,6 @@ export const get: APIRoute = async (context) => {
     });
   }
   try {
-    console.log("$$$cb", import.meta.env.CLERK_CALLBACK_URL);
-
     const tokens = await validateOAuth2AuthorizationCode<{
       access_token: string;
     }>(code, import.meta.env.CLERK_TOKEN_ENDPOINT, {
@@ -39,6 +37,7 @@ export const get: APIRoute = async (context) => {
         Authorization: `Bearer ${tokens.access_token}`,
       },
     });
+
     const authCallback = auth(context.locals.runtime.env.DB);
     const clerkUser: ClerkUserResponse = await response.json();
     const { getExistingUser, createUser } = providerUserAuth(
@@ -66,14 +65,14 @@ export const get: APIRoute = async (context) => {
     return context.redirect("/", 302); // redirect to profile page
   } catch (e) {
     if (e instanceof OAuthRequestError) {
-      console.log(e.request.url);
-      console.log(await e.response.json());
+      console.error(e.request.url);
+      console.error(await e.response.json());
       // invalid code
       return new Response(null, {
         status: 400,
       });
     }
-    console.log(e);
+    console.error(e);
     return new Response(null, {
       status: 500,
     });

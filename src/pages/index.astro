@@ -172,7 +172,6 @@ if (!session) return Astro.redirect("/login", 302);
     const rect = canvas.getBoundingClientRect();
     const scaleX = canvas.width / rect.width;
     const scaleY = canvas.height / rect.height;
-    console.log(rect.width, rect.height, canvas.width, canvas.height);
     return {
       x: point.x * scaleX,
       y: point.y * scaleY,
