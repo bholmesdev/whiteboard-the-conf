@@ -11,6 +11,6 @@
 
   // add support for autocomplete in JS or JS like files
   "cssvar.extensions": [
-    "css", "postcss", "jsx", "tsx", "astro"
+    "css", "postcss", "jsx", "tsx", "astro", "svelte"
   ]
 }
