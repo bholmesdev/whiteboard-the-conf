@@ -1,0 +1,29 @@
+---
+import { z } from "astro/zod";
+
+type Props = {
+  userId: string;
+};
+
+const { userId } = Astro.props;
+
+const rawUser = await Astro.locals.runtime.env.DB.prepare(
+  `SELECT badge_img_url FROM user WHERE id = ?`
+)
+  .bind(userId)
+  .first();
+
+const user = z.object({ badge_img_url: z.string().nullable() }).parse(rawUser);
+---
+
+<img src={user.badge_img_url} />
+
+<style>
+  img {
+    background: white;
+    max-width: 80%;
+    max-height: 80vh;
+    border-radius: var(--size-4);
+    box-shadow: var(--shadow-5);
+  }
+</style>
