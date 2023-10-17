@@ -1,32 +1,30 @@
 ---
-import Badge from "../components/Badge.astro";
-import BadgeEditor from "../components/BadgeEditor.astro";
-import Layout from "../layouts/Layout.astro";
 
-const session = await Astro.locals.auth.validate();
 ---
 
-<Layout title="Whiteboard the conf">
-  <div class="container">
-    <header>
-      <h1>Whiteboard the conf</h1>
-    </header>
-    <main>
-      {
-        session ? (
-          <>
-            <Badge userId={session.user.userId} />
-            <BadgeEditor />
-          </>
-        ) : (
-          <p>
-            <a href="/login/clerk">Sign Up with Clerk</a>
-          </p>
-        )
-      }
-    </main>
-  </div>
-</Layout>
+<p>Customize your badge ✨</p>
+<form method="POST" class="editor">
+  <canvas width="1080" height="1440"></canvas>
+  <fieldset>
+    <legend class="sr-only">Color</legend>
+
+    <input type="radio" id="color-purple" name="color" value="purple" checked />
+    <label class="sr-only" for="color-purple"> Purple</label>
+
+    <input type="radio" id="color-orange" name="color" value="orange" />
+    <label class="sr-only" for="color-orange"> Orange</label>
+
+    <input type="radio" id="color-pink" name="color" value="pink" />
+    <label class="sr-only" for="color-pink"> Pink</label>
+
+    <input type="radio" id="color-green" name="color" value="green" />
+    <label class="sr-only" for="color-green"> Green</label>
+
+    <p hidden data-error></p>
+
+    <button type="submit">Save</button>
+  </fieldset>
+</form>
 
 <style>
   .container {
@@ -116,6 +114,33 @@ const session = await Astro.locals.auth.validate();
 </style>
 
 <script>
+  import { navigate } from "astro:transitions/client";
+
+  const form = document.querySelector("form")!;
+  const submitBtn = form.querySelector("button")!;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const canvas = document.querySelector("canvas")!;
+    const badgeImgUrl = canvas.toDataURL();
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Saving...";
+
+    const res = await fetch("/user", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ badgeImgUrl }),
+    });
+
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Save";
+    if (res.ok) {
+      navigate(window.location.href);
+    }
+  });
+
   const colorMap = {
     orange: getCssVar("--orange"),
     purple: getCssVar("--purple"),

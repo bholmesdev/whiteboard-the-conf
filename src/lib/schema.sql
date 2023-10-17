@@ -1,10 +1,12 @@
 DROP TABLE IF EXISTS user_key;
 DROP TABLE IF EXISTS user_session;
+DROP TABLE IF EXISTS ticket;
 DROP TABLE IF EXISTS user;
 
 CREATE TABLE user (
     id TEXT PRIMARY KEY,
-    username TEXT NOT NULL
+    username TEXT NOT NULL,
+    badge_img_url TEXT
 );
 CREATE TABLE user_key (
     id TEXT PRIMARY KEY,
