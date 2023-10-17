@@ -3,6 +3,7 @@
 
   let formStatus: "initial" | "loading" | "success" | "error" = "initial";
   let isEditing = false;
+  let isCopied = false;
 
   let canvasElement: HTMLCanvasElement;
   let containerElement: HTMLElement;
@@ -35,6 +36,15 @@
 
     formStatus = "success";
     window.location.reload();
+  }
+
+  function copyUrlToClipboard() {
+    const url = window.location.href;
+    navigator.clipboard.writeText(url);
+    isCopied = true;
+    setTimeout(() => {
+      isCopied = false;
+    }, 1000);
   }
 </script>
 
@@ -96,18 +106,37 @@
     </div>
   </form>
 {:else}
-  <button class="edit-btn" on:click={() => (isEditing = true)}
-    >Add a drawing <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="32"
-      height="32"
-      viewBox="0 0 24 24"
-      ><path
-        fill="currentColor"
-        d="m19.3 8.925l-4.25-4.2l1.4-1.4q.575-.575 1.413-.575t1.412.575l1.4 1.4q.575.575.6 1.388t-.55 1.387L19.3 8.925ZM17.85 10.4L7.25 21H3v-4.25l10.6-10.6l4.25 4.25Z"
-      /></svg
-    ></button
-  >
+  <div class="preview-btns">
+    <button class="edit-btn" on:click={() => (isEditing = true)}
+      >Add a drawing <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        ><path
+          fill="currentColor"
+          d="m19.3 8.925l-4.25-4.2l1.4-1.4q.575-.575 1.413-.575t1.412.575l1.4 1.4q.575.575.6 1.388t-.55 1.387L19.3 8.925ZM17.85 10.4L7.25 21H3v-4.25l10.6-10.6l4.25 4.25Z"
+        /></svg
+      ></button
+    >
+
+    <button on:click={copyUrlToClipboard}>
+      {#if isCopied}
+        Link copied <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
+          viewBox="0 0 24 24"
+          ><path
+            fill="currentColor"
+            d="m10 16.4l-4-4L7.4 11l2.6 2.6L16.6 7L18 8.4l-8 8Z"
+          /></svg
+        >
+      {:else}
+        Share
+      {/if}
+    </button>
+  </div>
   <slot name="preview" />
 {/if}
 
@@ -117,6 +146,16 @@
     color: var(--red-12);
     padding-inline: var(--size-2);
     padding-block: var(--size-1);
+  }
+
+  .preview-btns {
+    display: flex;
+    gap: var(--size-2);
+    align-items: center;
+    justify-content: space-between;
+    max-width: 80%;
+
+    margin-block-end: var(--size-3);
   }
 
   button {
@@ -137,8 +176,8 @@
   }
 
   button svg {
-    width: 1em;
-    height: 1em;
+    width: 1.2em;
+    height: 1.2em;
   }
 
   .submit-btn {
@@ -148,7 +187,6 @@
 
   .edit-btn {
     background-color: var(--surface-2);
-    margin-block-end: var(--size-3);
   }
 
   .edit-container {
