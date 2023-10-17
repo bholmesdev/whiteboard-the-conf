@@ -1,0 +1,73 @@
+---
+import RSVP from "../../components/RSVP.astro";
+import Preview from "../../components/badge/Preview.astro";
+import Toggle from "../../components/badge/Toggle.svelte";
+import Layout from "../../layouts/Layout.astro";
+
+const { username } = Astro.params;
+
+if (!username) return Astro.redirect("/");
+
+const session = await Astro.locals.auth.validate();
+---
+
+<Layout title="Whiteboard the conf">
+  <div class="container">
+    <header>
+      <h1>Whiteboard the conf</h1>
+    </header>
+    <main>
+      {
+        session && username === session.user.username ? (
+          <Toggle client:load>
+            <Preview slot="preview" {username} />
+          </Toggle>
+        ) : (
+          <div class="preview-container">
+            <p>
+              Join @{username} for the greatest gathering of web devs and
+              whiteboardists on earth!
+            </p>
+            <RSVP />
+            <Preview {username} />
+          </div>
+        )
+      }
+    </main>
+  </div>
+</Layout>
+
+<style>
+  .container {
+    padding-inline: var(--size-2);
+    max-width: 80ch;
+    margin: auto;
+  }
+
+  .preview-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--size-3);
+  }
+
+  header {
+    padding-block-end: var(--size-4);
+  }
+
+  :root {
+    --orange-hs: 7, 91%;
+    --purple-hs: 263, 100%;
+    --pink-hs: 331, 96%;
+    --green-hs: 116, 86%;
+    --orange: hsl(var(--orange-hs), 50%);
+    --purple: hsl(var(--purple-hs), 50%);
+    --pink: hsl(var(--pink-hs), 45%);
+    --green: hsl(var(--green-hs), 34%);
+  }
+
+  a {
+    text-decoration: none;
+    background: var(--purple);
+  }
+</style>

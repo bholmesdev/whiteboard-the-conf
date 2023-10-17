@@ -2,15 +2,17 @@
 import { z } from "astro/zod";
 
 type Props = {
-  userId: string;
+  username: string;
 };
 
-const { userId } = Astro.props;
+const { username } = Astro.props;
+
+console.log({ username });
 
 const rawUser = await Astro.locals.runtime.env.DB.prepare(
-  `SELECT username, badge_img_url, picture FROM user WHERE id = ?`
+  `SELECT username, badge_img_url, picture FROM user WHERE username = ?`
 )
-  .bind(userId)
+  .bind(username)
   .first();
 
 const user = z

@@ -1,9 +1,12 @@
 ---
-import Preview from "../components/badge/Preview.astro";
-import Toggle from "../components/badge/Toggle.svelte";
+import RSVP from "../components/RSVP.astro";
 import Layout from "../layouts/Layout.astro";
 
 const session = await Astro.locals.auth.validate();
+
+if (session) {
+  return Astro.redirect(`/invite/${session.user.username}`);
+}
 ---
 
 <Layout title="Whiteboard the conf">
@@ -12,17 +15,13 @@ const session = await Astro.locals.auth.validate();
       <h1>Whiteboard the conf</h1>
     </header>
     <main>
-      {
-        session ? (
-          <Toggle client:load>
-            <Preview slot="preview" userId={session.user.userId} />
-          </Toggle>
-        ) : (
-          <p>
-            <a href="/login/clerk">Sign Up with Clerk</a>
-          </p>
-        )
-      }
+      <p>
+        Join us for the <strong>greatest</strong> gathering of whiteboard
+        enthusiasts the world over! Whether your a developer, teacher, or just
+        dry-erase artist, you'll definitely find a home here 🙌
+      </p>
+
+      <RSVP />
     </main>
   </div>
 </Layout>
@@ -36,6 +35,13 @@ const session = await Astro.locals.auth.validate();
 
   header {
     padding-block-end: var(--size-4);
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-4);
+    align-items: center;
   }
 
   :root {

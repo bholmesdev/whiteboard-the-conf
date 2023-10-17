@@ -40,31 +40,6 @@
 
 {#if isEditing}
   <form bind:this={containerElement} on:submit|preventDefault={onSubmit}>
-    {#if formStatus === "error"}
-      <p class="error">Problem updating your badge {":("} Try again later!</p>
-    {/if}
-    <canvas bind:this={canvasElement} width="1080" height="1440" />
-    <fieldset>
-      <legend class="sr-only">Color</legend>
-
-      <input
-        type="radio"
-        id="color-purple"
-        name="color"
-        value="purple"
-        checked
-      />
-      <label class="sr-only" for="color-purple"> Purple</label>
-
-      <input type="radio" id="color-orange" name="color" value="orange" />
-      <label class="sr-only" for="color-orange"> Orange</label>
-
-      <input type="radio" id="color-pink" name="color" value="pink" />
-      <label class="sr-only" for="color-pink"> Pink</label>
-
-      <input type="radio" id="color-green" name="color" value="green" />
-      <label class="sr-only" for="color-green"> Green</label>
-    </fieldset>
     <button class="submit-btn" disabled={formStatus === "loading"}
       >Save
       {#if formStatus === "loading"}
@@ -91,10 +66,38 @@
         >
       {/if}
     </button>
+
+    <div class="edit-container">
+      {#if formStatus === "error"}
+        <p class="error">Problem updating your badge {":("} Try again later!</p>
+      {/if}
+      <canvas bind:this={canvasElement} width="1080" height="1440" />
+      <fieldset>
+        <legend class="sr-only">Color</legend>
+
+        <input
+          type="radio"
+          id="color-purple"
+          name="color"
+          value="purple"
+          checked
+        />
+        <label class="sr-only" for="color-purple"> Purple</label>
+
+        <input type="radio" id="color-orange" name="color" value="orange" />
+        <label class="sr-only" for="color-orange"> Orange</label>
+
+        <input type="radio" id="color-pink" name="color" value="pink" />
+        <label class="sr-only" for="color-pink"> Pink</label>
+
+        <input type="radio" id="color-green" name="color" value="green" />
+        <label class="sr-only" for="color-green"> Green</label>
+      </fieldset>
+    </div>
   </form>
 {:else}
   <button class="edit-btn" on:click={() => (isEditing = true)}
-    >Create new <svg
+    >Add a drawing <svg
       xmlns="http://www.w3.org/2000/svg"
       width="32"
       height="32"
@@ -117,12 +120,20 @@
   }
 
   button {
-    padding-inline: var(--size-3);
-    padding-block: var(--size-2);
+    font-size: var(--font-size-lg);
     border-radius: var(--size-2);
+    padding-block: var(--size-2);
+    padding-inline: var(--size-5);
+    background-color: var(--purple);
+    box-shadow: var(--shadow-3);
+    transition: scale 0.5s var(--ease-spring-5);
     display: flex;
     align-items: center;
     gap: var(--size-2);
+  }
+
+  button:hover {
+    scale: 1.1;
   }
 
   button svg {
@@ -132,13 +143,15 @@
 
   .submit-btn {
     background-color: var(--purple);
+    margin-block-end: var(--size-3);
   }
 
   .edit-btn {
     background-color: var(--surface-2);
+    margin-block-end: var(--size-3);
   }
 
-  form {
+  .edit-container {
     display: flex;
     gap: var(--size-2);
     align-items: flex-start;
