@@ -153,7 +153,6 @@
     gap: var(--size-2);
     align-items: center;
     justify-content: space-between;
-    max-width: 80%;
 
     margin-block-end: var(--size-3);
   }
@@ -207,8 +206,8 @@
 
   canvas {
     background: white;
-    max-width: 80%;
-    max-height: 80vh;
+    width: 100%;
+    aspect-ratio: 3 / 4;
     border-radius: var(--size-4);
     box-shadow: var(--shadow-5);
   }
