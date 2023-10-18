@@ -11,7 +11,10 @@ if (!username) return Astro.redirect("/");
 const session = await Astro.locals.auth.validate();
 ---
 
-<Layout title="Whiteboard the conf">
+<Layout
+  title="Whiteboard the conf"
+  description={`Join @${username} and other whiteboarding web devs like you`}
+>
   <div class="container">
     <header>
       <h1>Whiteboard the conf</h1>
