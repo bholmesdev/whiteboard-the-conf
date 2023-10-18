@@ -29,9 +29,17 @@ const user = z
       <h2>Whiteboard the Conf</h2>
       <h3>@{user.username}</h3>
     </hgroup>
-    {user.picture ? <img class="profile" src={user.picture} /> : null}
+    {
+      user.picture ? (
+        <img class="profile" src={user.picture} alt={user.username} />
+      ) : null
+    }
   </div>
-  {user.badge_img_url ? <img class="badge" src={user.badge_img_url} /> : null}
+  {
+    user.badge_img_url ? (
+      <img class="badge" src={user.badge_img_url} alt="" />
+    ) : null
+  }
 </div>
 
 <style>
