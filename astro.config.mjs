@@ -1,9 +1,6 @@
 import { defineConfig } from "astro/config";
 import cloudflare from "@astrojs/cloudflare";
-
 import svelte from "@astrojs/svelte";
-
-console.log("built!");
 
 // https://astro.build/config
 export default defineConfig({
