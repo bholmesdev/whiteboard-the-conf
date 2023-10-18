@@ -1,16 +1,18 @@
 /// <reference types="astro/client" />
+/// <reference types="lucia" />
+
 declare namespace App {
   interface Locals {
     auth: import("lucia").AuthRequest;
   }
 }
 
-/// <reference types="lucia" />
 declare namespace Lucia {
   type Auth = import("./lib/lucia").Auth;
   type DatabaseUserAttributes = {
     username: string;
-    userId: string;
+    picture?: string;
+    badge_img_url?: string;
   };
   type DatabaseSessionAttributes = {};
 }

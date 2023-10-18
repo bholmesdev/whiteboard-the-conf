@@ -1,25 +1,9 @@
 ---
-import { z } from "astro/zod";
+import type { User } from "lucia";
 
-type Props = {
-  username: string;
-};
+type Props = Omit<User, "userId">;
 
-const { username } = Astro.props;
-
-const rawUser = await Astro.locals.runtime.env.DB.prepare(
-  `SELECT username, badge_img_url, picture FROM user WHERE username = ?`
-)
-  .bind(username)
-  .first();
-
-const user = z
-  .object({
-    badge_img_url: z.string().nullable(),
-    picture: z.string().nullable(),
-    username: z.string(),
-  })
-  .parse(rawUser);
+const { username, picture, badgeImgUrl } = Astro.props;
 ---
 
 <div class="container">
@@ -27,19 +11,11 @@ const user = z
   <div class="label">
     <hgroup>
       <h2>Whiteboard the Conf</h2>
-      <h3>@{user.username}</h3>
+      <h3>@{username}</h3>
     </hgroup>
-    {
-      user.picture ? (
-        <img class="profile" src={user.picture} alt={user.username} />
-      ) : null
-    }
+    {picture ? <img class="profile" src={picture} alt={username} /> : null}
   </div>
-  {
-    user.badge_img_url ? (
-      <img class="badge" src={user.badge_img_url} alt="" />
-    ) : null
-  }
+  {badgeImgUrl ? <img class="badge" src={badgeImgUrl} alt="" /> : null}
 </div>
 
 <style>
