@@ -11,7 +11,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^7.5.4",
+    "@astrojs/cloudflare": "^7.6.0",
     "@astrojs/svelte": "^4.0.3",
     "@lucia-auth/adapter-sqlite": "latest",
     "@lucia-auth/oauth": "latest",
@@ -24,10 +24,5 @@
     "@cloudflare/workers-types": "^4.20231016.0",
     "@types/node": "^20.8.6",
     "wrangler": "^3.13.1"
-  },
-  "pnpm": {
-    "patchedDependencies": {
-      "@astrojs/cloudflare@7.5.4": "patches/@astrojs__cloudflare@7.5.4.patch"
-    }
   }
 }
