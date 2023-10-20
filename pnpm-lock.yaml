@@ -1,18 +1,13 @@
-lockfileVersion: '6.0'
+lockfileVersion: '6.1'
 
 settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-patchedDependencies:
-  '@astrojs/cloudflare@7.5.4':
-    hash: s3iyphaqpvk3veq75sgtww3yb4
-    path: patches/@astrojs__cloudflare@7.5.4.patch
-
 dependencies:
   '@astrojs/cloudflare':
-    specifier: ^7.5.4
-    version: 7.5.4(patch_hash=s3iyphaqpvk3veq75sgtww3yb4)(@types/node@20.8.6)(astro@3.3.0)
+    specifier: ^7.6.0
+    version: 7.6.0(@types/node@20.8.6)(astro@3.3.0)
   '@astrojs/svelte':
     specifier: ^4.0.3
     version: 4.0.3(astro@3.3.0)(svelte@4.2.1)(typescript@5.2.2)(vite@4.4.11)
@@ -56,8 +51,8 @@ packages:
       '@jridgewell/trace-mapping': 0.3.19
     dev: false
 
-  /@astrojs/cloudflare@7.5.4(patch_hash=s3iyphaqpvk3veq75sgtww3yb4)(@types/node@20.8.6)(astro@3.3.0):
-    resolution: {integrity: sha512-AOe686LoUFvj4xbqxQLHPmXNuf7c2gnwFFQSDWVabxZqoANJW7EjUK+Hb6OVD+RAbhIybUGB1LmImKgYrblEUg==}
+  /@astrojs/cloudflare@7.6.0(@types/node@20.8.6)(astro@3.3.0):
+    resolution: {integrity: sha512-Zc9OCUgeiyHFIWLSAT31RdngujksRWeD2qLzbW5P0cJEtB5yXx73mzLv+STCkE6DsNyOK8nCgeddGantFR4ypw==}
     peerDependencies:
       astro: ^3.3.0
     dependencies:
@@ -83,7 +78,6 @@ packages:
       - terser
       - utf-8-validate
     dev: false
-    patched: true
 
   /@astrojs/compiler@2.2.0:
     resolution: {integrity: sha512-JvmckEJgg8uXUw8Rs6VZDvN7LcweCHOdcxsCXpC+4KMDC9FaB5t9EH/NooSE+hu/rnACEhsXA3FKmf9wnhb7hA==}
