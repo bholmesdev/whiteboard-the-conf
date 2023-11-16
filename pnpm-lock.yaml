@@ -1,10 +1,13 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@astrojs/alpinejs':
+    specifier: ^0.3.1
+    version: 0.3.1(@types/alpinejs@3.13.5)(alpinejs@3.13.2)
   '@astrojs/cloudflare':
     specifier: ^7.6.0
     version: 7.6.0(@types/node@20.8.6)(astro@3.3.0)
@@ -17,6 +20,12 @@ dependencies:
   '@lucia-auth/oauth':
     specifier: latest
     version: 3.3.1(lucia@2.7.1)
+  '@types/alpinejs':
+    specifier: ^3.0.0
+    version: 3.13.5
+  alpinejs:
+    specifier: ^3.0.0
+    version: 3.13.2
   astro:
     specifier: ^3.3.0
     version: 3.3.0(@types/node@20.8.6)(typescript@5.2.2)
@@ -29,6 +38,9 @@ dependencies:
   svelte:
     specifier: ^4.0.0
     version: 4.2.1
+  vite-plugin-simple-scope:
+    specifier: ^1.0.2
+    version: 1.0.2
 
 devDependencies:
   '@cloudflare/workers-types':
@@ -49,6 +61,16 @@ packages:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.3
       '@jridgewell/trace-mapping': 0.3.19
+    dev: false
+
+  /@astrojs/alpinejs@0.3.1(@types/alpinejs@3.13.5)(alpinejs@3.13.2):
+    resolution: {integrity: sha512-GKaptRkdJvcqoTOCeAbeiemnpsayJkUmShSjR2qlkvpCIv7B5HzqqfkblLnOwgMGKOggpwZJAZfSAmALqWgNcw==}
+    peerDependencies:
+      '@types/alpinejs': ^3.0.0
+      alpinejs: ^3.0.0
+    dependencies:
+      '@types/alpinejs': 3.13.5
+      alpinejs: 3.13.2
     dev: false
 
   /@astrojs/cloudflare@7.6.0(@types/node@20.8.6)(astro@3.3.0):
@@ -1160,6 +1182,10 @@ packages:
       - supports-color
     dev: false
 
+  /@types/alpinejs@3.13.5:
+    resolution: {integrity: sha512-BSNTroRhmBkNiyd7ELK/5Boja92hnQMST6H4z1BqXKeMVzHjp9o1j5poqd5Tyhjd8oMFwxYC4I00eghfg2xrTA==}
+    dev: false
+
   /@types/babel__core@7.20.2:
     resolution: {integrity: sha512-pNpr1T1xLUc2l3xJKuPtsEky3ybxN3m4fJkknfIpTCTfIZCDW57oAg+EfCgIIp2rvCe0Wn++/FfodDS4YXxBwA==}
     dependencies:
@@ -1254,6 +1280,16 @@ packages:
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
     dev: false
 
+  /@vue/reactivity@3.1.5:
+    resolution: {integrity: sha512-1tdfLmNjWG6t/CsPldh+foumYFo3cpyCHgBYQ34ylaMsJ+SNHQ1kApMIa8jN+i593zQuaw3AdWH0nJTARzCFhg==}
+    dependencies:
+      '@vue/shared': 3.1.5
+    dev: false
+
+  /@vue/shared@3.1.5:
+    resolution: {integrity: sha512-oJ4F3TnvpXaQwZJNF3ZK+kLPHKarDmJjJ6jyzVNDKH9md1dptjC7lWR//jrGuLdek/U6iltWxqAnYOu8gCiOvA==}
+    dev: false
+
   /acorn-walk@8.2.0:
     resolution: {integrity: sha512-k+iyHEuPgSw6SbuDpGQM+06HQUa04DZ3o+F6CSzXMvvI5KMvnaEqXe+YVe555R9nn6GPt404fos4wcgpw12SDA==}
     engines: {node: '>=0.4.0'}
@@ -1262,6 +1298,12 @@ packages:
     resolution: {integrity: sha512-F0SAmZ8iUtS//m8DmCTA0jlh6TDKkHQyK6xc6V4KDTyZKA9dnvX9/3sRTVQrWm79glUAZbnmmNcdYwUIHWVybw==}
     engines: {node: '>=0.4.0'}
     hasBin: true
+
+  /alpinejs@3.13.2:
+    resolution: {integrity: sha512-WzojeeN082kLZznGI1HAuP8yFJSWqJ1fGdz2mUjj45H4y0XwToE7fFqtI3mCPRR+BpcSbxT/NL+FyPnYAWSltw==}
+    dependencies:
+      '@vue/reactivity': 3.1.5
+    dev: false
 
   /ansi-align@3.0.1:
     resolution: {integrity: sha512-IOfwwBF5iczOjp/WeY4YxyjqAFMQoZufdQWDd19SEExbVLNXqvpzSJ/M7Za4/sCPmQ0+GRquoA7bGcINcxew6w==}
@@ -3092,6 +3134,12 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
+  /nanoid@5.0.3:
+    resolution: {integrity: sha512-I7X2b22cxA4LIHXPSqbBCEQSL+1wv8TuoefejsX4HFWyC6jc5JG7CEaxOltiKjc1M+YCS2YkrZZcj4+dytw9GA==}
+    engines: {node: ^18 || >=20}
+    hasBin: true
+    dev: false
+
   /napi-build-utils@1.0.2:
     resolution: {integrity: sha512-ONmRUqK7zj7DWX0D9ADe03wbwOBZxNAfF20PlGfCWQcD3+/MakShIHrMqx9YwPTfxDdF1zLeL+RGZiR9kGMLdg==}
     requiresBuild: true
@@ -4201,6 +4249,12 @@ packages:
       '@types/unist': 3.0.0
       unist-util-stringify-position: 4.0.0
       vfile-message: 4.0.2
+    dev: false
+
+  /vite-plugin-simple-scope@1.0.2:
+    resolution: {integrity: sha512-57NFUqDGvKzdx9Rtrb04mRdICTH46lI5AFY4kfnikKrkSP5Ku4m8pv8BOu8yPL1QFziidXovCOcvOk0EYYJYfA==}
+    dependencies:
+      nanoid: 5.0.3
     dev: false
 
   /vite@4.4.11(@types/node@20.8.6):

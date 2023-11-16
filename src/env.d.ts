@@ -1,5 +1,6 @@
 /// <reference types="astro/client" />
 /// <reference types="lucia" />
+/// <reference types="vite-plugin-simple-scope/types" />
 
 declare namespace App {
   interface Locals {

@@ -11,14 +11,18 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/alpinejs": "^0.3.1",
     "@astrojs/cloudflare": "^7.6.0",
     "@astrojs/svelte": "^4.0.3",
     "@lucia-auth/adapter-sqlite": "latest",
     "@lucia-auth/oauth": "latest",
+    "@types/alpinejs": "^3.0.0",
+    "alpinejs": "^3.0.0",
     "astro": "^3.3.0",
     "lucia": "latest",
     "open-props": "^1.6.5",
-    "svelte": "^4.0.0"
+    "svelte": "^4.0.0",
+    "vite-plugin-simple-scope": "^1.0.2"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20231016.0",
