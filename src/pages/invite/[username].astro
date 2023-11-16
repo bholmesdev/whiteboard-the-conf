@@ -1,7 +1,7 @@
 ---
 import RSVP from "../../components/RSVP.astro";
 import Preview from "../../components/badge/Preview.astro";
-import Toggle from "../../components/badge/Toggle.svelte";
+import Toggle from "../../components/badge/Toggle.astro";
 import Layout from "../../layouts/Layout.astro";
 import { userSchema } from "../../lib/lucia";
 
@@ -50,7 +50,7 @@ async function lookUpUser() {
         </header>
         <main>
           {isYourProfile ? (
-            <Toggle client:load>
+            <Toggle>
               <Preview slot="preview" {...user} />
             </Toggle>
           ) : (
