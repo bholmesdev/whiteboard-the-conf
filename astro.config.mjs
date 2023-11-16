@@ -1,6 +1,5 @@
 import { defineConfig } from "astro/config";
 import cloudflare from "@astrojs/cloudflare";
-import svelte from "@astrojs/svelte";
 import alpinejs from "@astrojs/alpinejs";
 import simpleScope from "vite-plugin-simple-scope";
 
@@ -13,7 +12,7 @@ export default defineConfig({
       mode: "local",
     },
   }),
-  integrations: [svelte(), alpinejs()],
+  integrations: [alpinejs()],
   vite: {
     plugins: [simpleScope()],
   },
