@@ -1,54 +1,39 @@
-# Astro Starter Kit: Basics
+# Whiteboard the Conf 📢
 
-```sh
-npm create astro@latest -- --template basics
-```
+The greatest gathering of web devs and whiteboardists on earth.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+> This is a totally real conference, I swear
+> ~ @bholmesdev
 
 ## 🚀 Project Structure
 
-Inside of your Astro project, you'll see the following folders and files:
+This project uses the ASC stack: Astro, Svelte, and Cloudflare workers. It's bASiCally the perfect pick for a viral event site.
 
-```text
+The essential files are highlighted below:
+
+```bash
 /
 ├── public/
 │   └── favicon.svg
 ├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── lib/
+│   │   ├── lucia.ts # configure Clerk as oauth provider
+│   │   └── schema.sql # scaffold SQLite tables
+│   ├── pages/
+│   │   ├── invite/[username].astro # show dynamic invite link
+│   │   ├── login/clerk # handle sign-in redirects
+│   │   └── user.ts # handle table updates
+└── wrangler.toml # configure SQLite with Cloudflare D1
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+You may have noticed we own the user tables. That's because we're treating Clerk like an external auth provider, and storing user info whenever logins are redirected successfully.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+It's a mess, I know. But it let us pull off server-side auth without hacking core Clerk SDKs 🙃
 
-Any static assets, like images, can be placed in the `public/` directory.
+## ⚙️ Run locally
 
-## 🧞 Commands
+You can run this project locally with the following steps:
 
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+1. Create a Clerk account and retrieve the credentials outlined in the `.env.example`
+2. Run `d1:setup` to scaffold a local Cloudflare database.
+3. Run `dev` to start the dev server.
